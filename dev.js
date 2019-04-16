@@ -1,7 +1,7 @@
 //Semplice web server
 //Modulo HTTP
 const http = require('http');
-const port = 8081;
+const port = 7070;
 
 //Comportamento er server con callback
 const server = http.createServer(function (request, response) {
@@ -16,16 +16,11 @@ const server = http.createServer(function (request, response) {
          {
             response.writeHead(200, {'Content-Type': 'text/html'});
             response.write(JSON.stringify(
-                [
-                    {
-                        "Nome": "Mario",
-                        "Cognome": "Rossi"
-                    },
-                    {
-                        "Nome": "Ken",
-                        "Cognome": "Norris"
-                    }
-                ]
+                {
+                    "version": "0.1",
+                    "nome": "Mia API personale",
+                    "data": "2019-04-16"
+                }
             ));
             response.end();
          }
