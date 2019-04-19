@@ -1,34 +1,68 @@
 const express = require('express')
-//let port = process.env.PORT || 3000
-let port = process.argv[2] || 3000
 const app = express()
+const fs = require('fs')
+let port = process.argv[2] || 8080
 
-/*
-  //Mostra la porta
-  console.log(" Port =", process.env.port) 
-  //Mostra il percorso dove è installato 'node' e la cartella che contiene il file 'express.js'
-  console.log('\n', process.argv)
-  //Mostrami la versione dell'app nal caso scrivessi ' node express.js v ' nel terminale
-  if(process.argv[2] === 'v')
-  {
-    console.log('\n', 'MyApp versione 0.0.1')
-  } 
-*/
-
-//Diciamo che la ROOT dei file statici è la cartella 'public'
-//app.use(express.static(__dirname + '/nome_cartella_file_statici'))
-app.use(express.static(__dirname + '/public'))
-
-/*
 app.get
 (
-  '/',
-  function (request, response)
+  '/books',
+  function(req, res)
   {
-    response.send('Hello World')
+    const filename = process.argv[3]
+    fs.readFile(
+                  filename, 
+                  function(e, data)
+                  {
+                    if(e)
+                    {
+                      //500 -> Internal Server Error
+                      return res.sendStatus(500)
+                    }
+
+                    try
+                    {
+                      books = JSON.parse(data)
+                    }
+                    catch (e)
+                    {
+                      res.sendStatus(500)
+                    }
+
+                    res.json(books)
+                  }
+               )
   }
 )
-*/
+
+app.get
+(
+  '/menu',
+  function(req, res)
+  {
+    const filename = process.argv[3]
+    fs.readFile(
+                  filename, 
+                  function(e, data)
+                  {
+                    if(e)
+                    {
+                      //500 -> Internal Server Error
+                      return res.sendStatus(500)
+                    }
+
+                    try
+                    {
+                      menu = JSON.parse(data)
+                    }
+                    catch (e)
+                    {
+                      res.sendStatus(500)
+                    }
+
+                    res.json(menu)
+                  }
+               )
+  }
+)
 
 app.listen(port)
-console.log('\n', `Server running at http://127.0.0.1:${port}`);
