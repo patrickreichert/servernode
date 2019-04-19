@@ -1,44 +1,25 @@
-//Semplice web server
-//Modulo HTTP
-const http = require('http');
-const port = 8081;
+const express = require('express')
+let port = process.argv[3] || 3000
+const app = express()
 
-//Comportamento er server con callback
-const server = http.createServer(function (request, response) {
-    console.log(request.url)
-    if (request.url === '/')
-    {
-        response.writeHead(200, {'Content-Type': 'text/html'});
-        response.write('<h1> Home </h1>');
-        response.end();
-    }
-    else if (request.url === '/api')
-         {
-            response.writeHead(200, {'Content-Type': 'text/html'});
-            response.write(JSON.stringify(
-                [
-                    {
-                        "Nome": "Mario",
-                        "Cognome": "Rossi"
-                    },
-                    {
-                        "Nome": "Ken",
-                        "Cognome": "Norris"
-                    }
-                ]
-            ));
-            response.end();
-         }
-         else
-         {
-            response.writeHead(200, {'Content-Type': 'text/html'});
-            response.write(`<h1> ${request.url} </h1>`);
-            response.end();
-         }
-})
+//Mostra la porta
+console.log('\n', "Port =", process.env.port) 
+//Mostra il percorso dove è installato 'node' e la cartella che contiene il file 'express.js'
+console.log('\n', process.argv)
+//Mostrami la versione dell'app nal caso scrivessi ' node express.js v ' nel terminale
+if(process.argv[2] === 'v')
+{
+  console.log('\n', 'MyApp versione 0.0.1')
+}
 
-//In ascolto
-//server.listen(porta, url);
-server.listen(port, '127.0.0.1');
-//apici particolari -> ``
-console.log(`Server running at http://127.0.0.1:${port}`);
+app.get
+(
+  '/',
+  function (request, response)
+  {
+    response.send('Hello World')
+  }
+)
+ 
+app.listen(port)
+console.log('\n', `Server running at http://127.0.0.1:${port}`);
