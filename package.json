@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "start:dev": "npm run express",
+    "express": "node express.js",
     "copy": "mv dev.js.bk dev.js",
     "serve": "npm start",
-    "dev":  "node dev.js",
+    "dev": "node dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/patrickreichert/servernode/issues"
   },
-  "homepage": "https://github.com/patrickreichert/servernode#readme"
+  "homepage": "https://github.com/patrickreichert/servernode#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
