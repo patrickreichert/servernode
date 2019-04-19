@@ -3,7 +3,7 @@ let port = process.argv[3] || 3000
 const app = express()
 
 //Mostra la porta
-console.log('\n', "Port =", process.env.port) 
+console.log(" Port =", process.env.port) 
 //Mostra il percorso dove è installato 'node' e la cartella che contiene il file 'express.js'
 console.log('\n', process.argv)
 //Mostrami la versione dell'app nal caso scrivessi ' node express.js v ' nel terminale
