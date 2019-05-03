@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
+//Per questa query
+//Chiedi http://localhost:7070/personaggi?sesso=m&colore=rosso
 router.get
 (
     '/',
     function(req, res)
     {
-        //Per questa query
-        //Chiedi http://localhost:7070/personaggi?sesso=m&colore=rosso
+        
         const query = req.query
         console.log('RES', query)
         let msg = 'Ciao'
@@ -35,4 +36,16 @@ router.get
     }
 )
 
+//Per questa query
+//Chiedi http://localhost:7070/
+router.get
+(
+    '/:id',
+    function(req, res)
+    {
+        const id = req.params.id
+        console.log('ID: ', id)
+        res.send(`personaggio id: ${id}`)
+    }
+)
 module.exports = router
