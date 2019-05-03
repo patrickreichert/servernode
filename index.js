@@ -8,7 +8,7 @@ app.get
   '/books',
   function(req, res)
   {
-    const filename = process.argv[3]
+    const filename = 'books.json'
     fs.readFile(
                   filename, 
                   function(e, data)
@@ -39,7 +39,7 @@ app.get
   '/menu',
   function(req, res)
   {
-    const filename = process.argv[3]
+    const filename = 'menu.js'
     fs.readFile(
                   filename, 
                   function(e, data)
