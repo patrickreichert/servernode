@@ -6,6 +6,8 @@ router.get
     '/',
     function(req, res)
     {
+        //Per questa query
+        //Chiedi http://localhost:7070/personaggi?sesso=m&colore=rosso
         const query = req.query
         console.log('RES', query)
         let msg = 'Ciao'
