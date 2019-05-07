@@ -6,8 +6,12 @@ router.get
     '/',
     function(req, res)
     {
-        res.send('users')
+        res.send('Ciao, utenti')
     }
 )
+
+// router.get('/personaggi', (req, res) => {
+//   res.send('personaggi')
+// })
 
 module.exports = router

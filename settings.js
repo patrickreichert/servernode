@@ -1,12 +1,15 @@
+    
 const test = {
-                prototipo: 0.01
+               prototipo: 0.01
              }
-
-//Creo un oggetto settings
-const settings = {
-                    versione: 0.01,
-                    mode: 'dark',
-                    location: 'Trieste'
-                 }
-
-exports.settings = settings
+ 
+ const settings = {
+                     versione: 0.01,
+                     mode: 'dark',
+                     location: 'Trieste'
+                  }
+ 
+ module.exports = {
+                     test,
+                     settings
+                  }

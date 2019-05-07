@@ -1,51 +1,44 @@
 const express = require('express');
 const router = express.Router();
+const characters = require('../data/characters')
 
-//Per questa query
-//Chiedi http://localhost:7070/personaggi?sesso=m&colore=rosso
+// Query
+// chiedi, per esempio, http://localhost:7070/personaggi?lastname=Stark
 router.get
 (
-    '/',
-    function(req, res)
+  '/', 
+  function(req, res, next)
+  {
+    const query = req.query
+    let personaggi = characters.characters
+    if ('lastname' in query)
     {
-        
-        const query = req.query
-        console.log('RES', query)
-        let msg = 'Ciao'
-        if(query.key === '7651276512765126')
-        {
-            msg = `${msg} Mario Rossi`
-        
-            if(query.sesso === 'm')
-            {
-                //msg = msg + ' bel uomo'
-                msg = `${msg} bel uomo`
-            }
-            if(query.colore)
-            {
-                msg = `${msg} ${query.colore}`
-            }
-        }
-        else
-        {
-            msg = `Utente non autorizzato`
-        }
-
-        res.send(msg)
-        
+      personaggi = personaggi.filter((personaggio) => {
+        return personaggio.lastname === query.lastname
+      })
     }
+    if ('firstname' in query) 
+    {
+      personaggi = personaggi.filter((personaggio) => {
+        return personaggio.firstname === query.firstname
+      })
+    }
+
+    res.send(personaggi)
+    next();
+  },
+  function(req, res)
+  {
+    console.log('FIRE: Il next ha funzionato correttamente')
+  }
 )
 
-//Per questa query
-//Chiedi http://localhost:7070/
-router.get
-(
-    '/:id',
-    function(req, res)
-    {
-        const id = req.params.id
-        console.log('ID: ', id)
-        res.send(`personaggio id: ${id}`)
-    }
-)
+// Params
+//http://localhost:7070/personaggi/9
+router.get('/:id/', (req, res) => {
+  const id = req.params.id
+  console.log('ID: ', id)
+  res.send(`personaggio id: ${id}`)
+})
+
 module.exports = router
