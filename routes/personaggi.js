@@ -3,7 +3,7 @@ const router = express.Router();
 const characters = require('../data/characters')
 
 // Query
-// chiedi, per esempio, http://localhost:7070/personaggi?lastname=Stark
+// chiedi, per esempio, http://localhost:8080/v0.1/personaggi?lastname=Stark
 router.get
 (
   '/', 
@@ -45,6 +45,18 @@ router.get
     ( 
       characters.characters.filter(personaggio => personaggio.id === parametroID)
     )
+  }
+)
+
+router.post
+(
+  '/form',
+  function (req, res)
+  {
+    const body = req.body
+    const {nome, cognome} = req.body
+    console.log(nome, cognome)
+    res.send(body)
   }
 )
 
