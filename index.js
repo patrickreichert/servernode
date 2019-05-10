@@ -11,6 +11,7 @@ const uri = "mongodb+srv://username:G4Mohki8@cluster0-oxiar.mongodb.net/serverno
 const client = new MongoClient(uri, { useNewUrlParser: true });
 const nomeDatabase = "servernode"
 const nomeCollection = "personaggi"
+
 client.connect((err) => 
 {
   if(err)
@@ -21,7 +22,7 @@ client.connect((err) =>
   //const collection = client.db(nomeDatabase).collection(nomeCollection);
 
   //Insert
-  const collection = client.db(nomeDatabase).collection('personaggi', function (err, collection) {
+  const collection = client.db(nomeDatabase).collection(nomeCollection, function (err, collection) {
 
     const giulio = {nome: 'Giulio', cognome: 'Cesare' };
     collection.insertOne(giulio);
@@ -44,7 +45,7 @@ client.connect((err) =>
   });
 
   //Update
-  client.db(nomeDatabase).collection('personaggi', function (err, collection) {
+  client.db(nomeDatabase).collection(nomeCollection, function (err, collection) {
 
     const newOne = { nome: 'Pippo', cognome: 'Stark', vivo: false };
 
